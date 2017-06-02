@@ -18,12 +18,12 @@ def slash_latex():
         image = latex.to_image_url(request.form['text'])
     except ValueError as err:
         return jsonify({
-            'response_type': 'ephemeral',
+            'response_type': 'in_channel',
             'attachments': [{
                 'fallback': '*LaTeX Error:* {}'.format(err),
                 'color': 'danger',
                 'fields': [{
-                    'title': '*LaTeX Error*',
+                    'title': 'LaTeX Error',
                     'value': str(err),
                 }],
             }],
@@ -33,6 +33,7 @@ def slash_latex():
         'response_type': 'in_channel',
         'attachments': [{
             'fallback': 'LaTeX',
+            'text': 'LaTeX',
             'image_url': image,
         }],
     })
