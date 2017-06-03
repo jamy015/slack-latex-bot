@@ -1,5 +1,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -8,5 +9,4 @@
 \usepackage{pgf}
 \usepackage{tikz}
 \usepackage{pgfplots}
-\usepackage[dvipsnames]{xcolor}
 \usepackage{url}
