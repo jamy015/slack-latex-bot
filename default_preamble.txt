@@ -1,3 +1,12 @@
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{url}
