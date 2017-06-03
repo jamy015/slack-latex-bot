@@ -53,14 +53,9 @@ def slash_latex():
     except ValueError as err:
         image = quicklatex.quicklatex(request.form['text'], show_errors=False)
         err_attachment = {
-            'fallback': '*LaTeX Error:* {}'.format(err),
+            'fallback': str(err),
             'color': 'warning',
-            'fields': [
-                {
-                    'title': 'LaTeX Error',
-                    'value': str(err),
-                }
-            ],
+            'text': str(err),
         }
     except quicklatex.HTTPError as err:
         return jsonify({
