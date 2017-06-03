@@ -23,8 +23,6 @@ def oauth():
             'code': request.args['code'],
         })
 
-        print(r.status_code)
-
         if r.status_code != 200:
             abort(400)  # Bad Request
     except RequestException:
