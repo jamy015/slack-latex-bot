@@ -8,6 +8,10 @@ Click the button for beautiful maths in your Slack team:
 
 Powered by [QuickLaTeX](http://quicklatex.com/).
 
+## Packages (`\usepackage`)
+
+The LaTeX Bot loads a [generous set](https://github.com/jamy015/slack-latex-bot/blob/master/default_preamble.txt) of packages for maximum versatility. If you're missing a package, don't hesitate to [open an issue](https://github.com/jamy015/slack-latex-bot/issues/new?title=Missing%20package).
+
 ## Disclaimer
 
 Your formulae are processed by [QuickLaTeX](http://quicklatex.com/). I am not responsible for their policies (e.g. with regards to data retention and/or confidentiality).
