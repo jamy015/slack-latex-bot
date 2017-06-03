@@ -62,6 +62,11 @@ def slash_latex():
                 }
             ],
         }
+    except latex.HTTPError as err:
+        return jsonify({
+            'response_type': 'in_channel',
+            'text': 'QuickLaTeX seems to be having some trouble (HTTP {}). Please try again later.'.format(err)
+        })
 
     return jsonify({
         'response_type': 'in_channel',

@@ -12,10 +12,17 @@ def to_image_url(formula, preamble=default_preamble, show_errors=False):
         'fsize': '19px',
         'out': '1',  # output PNG
         'errors': '1' if show_errors else '0',
-    })
-    lines = r.text.split('\r\n', 2)
+        })
 
+    if r.status_code != 200:
+        raise HTTPError(r.status_code)
+
+    lines = r.text.split('\r\n', 2)
     if lines[0] == '0':
         return lines[1].split(' ')[0]
     else:
         raise ValueError(lines[2].rstrip())
+
+
+class HTTPError(RuntimeError):
+    """Raise if QuickLaTeX returns a non-200 HTTP status code"""
