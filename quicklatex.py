@@ -12,7 +12,7 @@ def quicklatex(formula, preamble=default_preamble, show_errors=False):
         'fsize': '19px',
         'out': '1',  # output PNG
         'errors': '1' if show_errors else '0',
-        })
+    })
 
     if r.status_code != 200:
         raise HTTPError(r.status_code)
