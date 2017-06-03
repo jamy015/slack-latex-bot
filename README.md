@@ -12,6 +12,10 @@ Powered by [QuickLaTeX](http://quicklatex.com/).
 
 The LaTeX Bot loads a [generous set](https://github.com/jamy015/slack-latex-bot/blob/master/default_preamble.txt) of packages for maximum versatility. If you're missing a package, don't hesitate to [open an issue](https://github.com/jamy015/slack-latex-bot/issues/new?title=Missing%20package).
 
+## Support
+
+If you run into any trouble, please [open an issue](https://github.com/jamy015/slack-latex-bot/issues/new). You can also reach me via [e-mail](mailto:jamysanjay@gmail.com?subject=Slack%20LaTeX%20Bot).
+
 ## Disclaimer / Privacy Policy
 
 Slack LaTeX Bot does not store or retain any of your formulae.
