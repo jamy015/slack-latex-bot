@@ -15,27 +15,31 @@ def slash_latex():
         abort(401)  # Unauthorized
 
     try:
-        image = latex.to_image_url(request.form['text'])
+        image = latex.to_image_url(request.form['text'], show_errors=True)
+        err_attachment = None
     except ValueError as err:
-        return jsonify({
-            'response_type': 'in_channel',
-            'attachments': [{
-                'fallback': '*LaTeX Error:* {}'.format(err),
-                'color': 'danger',
-                'fields': [{
+        image = latex.to_image_url(request.form['text'], show_errors=False)
+        err_attachment = {
+            'fallback': '*LaTeX Error:* {}'.format(err),
+            'color': 'warning',
+            'fields': [
+                {
                     'title': 'LaTeX Error',
                     'value': str(err),
-                }],
-            }],
-        })
+                }
+            ],
+        }
 
     return jsonify({
         'response_type': 'in_channel',
-        'attachments': [{
-            'fallback': 'LaTeX',
-            'text': 'LaTeX',
-            'image_url': image,
-        }],
+        'attachments': [
+            err_attachment,
+            {
+                'fallback': 'LaTeX',
+                'text': 'LaTeX',
+                'image_url': image,
+            },
+        ],
     })
 
 
