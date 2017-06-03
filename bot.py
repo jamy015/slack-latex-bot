@@ -1,10 +1,34 @@
 import latex
 import os
+import requests
 from flask import Flask, request, abort, jsonify
+from requests.exceptions import RequestException
 
 app = Flask(__name__)
 
-slack_verification_token = os.environ["SLACK_VERIFICATION_TOKEN"]
+slack_client_id = os.environ['SLACK_CLIENT_ID']
+slack_client_secret = os.environ['SLACK_CLIENT_SECRET']
+slack_verification_token = os.environ['SLACK_VERIFICATION_TOKEN']
+
+
+@app.route('/slack/oauth', methods=['GET'])
+def oauth():
+    """Auth a Slack team"""
+    try:
+        r = requests.post('https://slack.com/api/oauth.access', data={
+            'client_id': slack_client_id,
+            'client_secret': slack_client_secret,
+            'code': request.args['code'],
+        })
+
+        print(r.status_code)
+
+        if r.status_code != 200:
+            abort(400)  # Bad Request
+    except RequestException:
+        abort(500)  # Internal Server Error
+
+    return 'Success!'
 
 
 @app.route('/slack/latex', methods=['POST'])
