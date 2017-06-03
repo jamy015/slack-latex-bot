@@ -1,7 +1,7 @@
 import os
 
 import requests
-from flask import Flask, request, abort, jsonify
+from flask import Flask, request, abort, redirect, jsonify
 from requests.exceptions import RequestException
 
 import quicklatex
@@ -30,7 +30,7 @@ def oauth():
     except RequestException:
         abort(500)  # Internal Server Error
 
-    return 'Success!'
+    return redirect('https://github.com/jamy015/slack-latex-bot/wiki/Success', 303)
 
 
 @app.route('/slack/latex', methods=['POST'])
