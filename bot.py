@@ -30,7 +30,7 @@ def oauth():
     except RequestException:
         abort(500)  # Internal Server Error
 
-    return redirect('https://github.com/jamy015/slack-latex-bot/wiki/Success', 303)
+    return redirect('https://github.com/jamy015/slack-latex-bot/blob/master/SUCCESS_PAGE.md', 303)
 
 
 @app.route('/slack/latex', methods=['POST'])
