@@ -14,6 +14,10 @@ def slash_latex():
     if request.form['token'] != slack_verification_token:
         abort(401)  # Unauthorized
 
+    if request.form['text'] == 'help':
+        return ('Give me a LaTeX formula and I\'ll show it to the channel!\r\n\r\n'
+                'Not quite ready for prime time? Just use me in the conversation with yourself!')
+
     try:
         image = latex.to_image_url(request.form['text'], show_errors=True)
         err_attachment = None
