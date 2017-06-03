@@ -35,7 +35,7 @@ def oauth():
 def slash_latex():
     """Handle an incoming LaTeX slash command from Slack"""
 
-    if request.form['ssl_check'] == '1':  # Slack SSL ping
+    if request.form.get('ssl_check') == '1':  # Slack SSL ping
         return ''  # Empty 200 OK
 
     if request.form['token'] != slack_verification_token:
