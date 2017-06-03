@@ -9,6 +9,7 @@ def to_image_url(formula, preamble=default_preamble, show_errors=False):
     r = requests.post('http://quicklatex.com/latex3.f', data={
         'formula': formula,
         'preamble': preamble,
+        'fsize': '19px',
         'out': '1',  # output PNG
         'errors': '1' if show_errors else '0',
     })
