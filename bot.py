@@ -1,8 +1,10 @@
-import latex
 import os
+
 import requests
 from flask import Flask, request, abort, jsonify
 from requests.exceptions import RequestException
+
+import latex
 
 app = Flask(__name__)
 
