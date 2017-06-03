@@ -4,7 +4,7 @@ import requests
 from flask import Flask, request, abort, jsonify
 from requests.exceptions import RequestException
 
-import latex
+import quicklatex
 
 app = Flask(__name__)
 
@@ -48,10 +48,10 @@ def slash_latex():
                 'Not quite ready for prime time? Just use me in the conversation with yourself!')
 
     try:
-        image = latex.to_image_url(request.form['text'], show_errors=True)
+        image = quicklatex.quicklatex(request.form['text'], show_errors=True)
         err_attachment = None
     except ValueError as err:
-        image = latex.to_image_url(request.form['text'], show_errors=False)
+        image = quicklatex.quicklatex(request.form['text'], show_errors=False)
         err_attachment = {
             'fallback': '*LaTeX Error:* {}'.format(err),
             'color': 'warning',
@@ -62,7 +62,7 @@ def slash_latex():
                 }
             ],
         }
-    except latex.HTTPError as err:
+    except quicklatex.HTTPError as err:
         return jsonify({
             'response_type': 'in_channel',
             'text': 'QuickLaTeX seems to be having some trouble (HTTP {}). Please try again later.'.format(err)
