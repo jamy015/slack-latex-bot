@@ -1,0 +1,33 @@
+service: slack-latex-bot
+
+package:
+  exclude:
+    - '**' # everything
+  include:
+    - '*.py'
+    - 'default_preamble.txt'
+    - '.requirements/**' # Serverless WSGI
+    - '.wsgi_app' # Serverless WSGI
+
+provider:
+  name: aws
+  runtime: python3.6
+  memorySize: 128 # minimum allowed amount
+  timeout: 3 # Slack slash command timeout
+  region: eu-west-1
+  environment: ${self:custom.secrets}
+
+plugins:
+  - serverless-wsgi
+
+functions:
+  api:
+    handler: wsgi.handler
+    events:
+      - http: ANY {proxy+}
+
+custom:
+  wsgi:
+    app: bot.app
+  stage: ${opt:stage, self:provider.stage}
+  secrets: ${file(secrets.yml):${self:custom.stage}}
