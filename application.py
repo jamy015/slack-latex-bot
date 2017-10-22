@@ -6,14 +6,14 @@ from requests.exceptions import RequestException
 
 import quicklatex
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 slack_client_id = os.environ['SLACK_CLIENT_ID']
 slack_client_secret = os.environ['SLACK_CLIENT_SECRET']
 slack_verification_token = os.environ['SLACK_VERIFICATION_TOKEN']
 
 
-@app.route('/slack/oauth', methods=['GET'])
+@application.route('/slack/oauth', methods=['GET'])
 def oauth():
     """Auth a Slack team"""
     try:
@@ -31,7 +31,7 @@ def oauth():
     return redirect('https://github.com/jamy015/slack-latex-bot/blob/master/SUCCESS_PAGE.md', 303)
 
 
-@app.route('/slack/latex', methods=['POST'])
+@application.route('/slack/latex', methods=['POST'])
 def slash_latex():
     """Handle an incoming LaTeX slash command from Slack"""
 
@@ -75,4 +75,4 @@ def slash_latex():
 
 
 if __name__ == "__main__":
-    app.run()
+    application.run()

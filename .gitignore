@@ -102,12 +102,8 @@ ENV/
 /site
 
 
-### Serverless ###
-# Ignore build directory
-.serverless
+### Elastic Beanstalk Files ###
 
-# Secrets file
-secrets.yml
-
-# NPM
-node_modules/
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
