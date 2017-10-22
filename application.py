@@ -13,6 +13,12 @@ slack_client_secret = os.environ['SLACK_CLIENT_SECRET']
 slack_verification_token = os.environ['SLACK_VERIFICATION_TOKEN']
 
 
+@application.route('/ping')
+def ping():
+    """Return a short message so it's easy to check whether the bot is up and running"""
+    return 'pong'
+
+
 @application.route('/slack/oauth', methods=['GET'])
 def oauth():
     """Auth a Slack team"""
